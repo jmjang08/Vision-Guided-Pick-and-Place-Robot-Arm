@@ -28,8 +28,10 @@ CameraWebServer (image stream)
      ↓
 a_*.py  → Calibration & color tuning
      ↓
-b/c_*.py → Object detection & coordinate conversion
+(b_*.py → Object detection & coordinate conversion) # for debugging
      ↓
+final_com_no_PID.py → motion planning
+     /
 final_com_with_P.py → IK + motion planning
      ↓
 Serial (USB)
@@ -67,7 +69,7 @@ meArm Robot Arm
 * Confirm live image access via browser
 * ESP32-CAM should be able to see robot arm and workspace entirely<br>
 (I used two sheets of white A4 paper stacked together as my workspace.)
-* Paste the camera base URL into `url.txt`
+* Paste the camera URL into `url.txt`
 
 ```
 # Example:
@@ -113,7 +115,7 @@ python a_hsv_tuner_black.py
 ### 4️⃣ Detection & IK Test (Optional)
 
 ```bash
-python c_color_detect_and_IK.py
+python b_color_detect_and_IK.py
 ```
 
 * Detects objects
@@ -181,7 +183,7 @@ DROP_BLACK = (base, shoulder, elbow)
 ```
 
 These can be customized per setup.
-Using robotarm_manual to copy the angles
+Use robotarm_manual to copy the angles
 
 ---
 
