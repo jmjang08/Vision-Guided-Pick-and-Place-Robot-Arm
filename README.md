@@ -15,7 +15,7 @@ Detected objects are converted from camera pixel coordinates into real-world coo
 * Inverse kinematics for a 3-DOF meArm-style robot
 * Pick & place logic with predefined drop zones
 * Optional **P-control (proportional control)** for smooth motion
-* Serial communication with Arduino (`.ino` firmware)
+* Serial communication with Arduino
 
 ---
 
@@ -23,21 +23,21 @@ Detected objects are converted from camera pixel coordinates into real-world coo
 
 ```
 ESP32 Camera
-     ↓
+  ↓
 CameraWebServer (image stream)
-     ↓
+  ↓
+PC (main control)
+  ↓
 a_*.py  → Calibration & color tuning
-     ↓
+  ↓
 (b_color_detect_and_IK.py → Object detection & coordinate conversion)
-     ↓
-final_com_no_PID.py → motion planning
-     /
-final_com_with_P.py → IK + motion planning
-     ↓
+  ↓
+final_com_*.py → (IK +) motion planning
+  ↓
 Serial (USB)
-     ↓
+  ↓
 Arduino (final_arm.ino)
-     ↓
+  ↓
 meArm Robot Arm
 ```
 
@@ -45,8 +45,11 @@ meArm Robot Arm
 
 ## ⚙️ Hardware Requirements
 
-* meArm-style 4-DOF robotic arm + custom gripper(hardware folder) <br>
-  custom gripper: Print all .stl files inside hardware folder. Files labeled x2 require two copies.
+* meArm-style 4-DOF robotic arm with joystick<br>
+  <img src="./img/final_robotarm.jpg" width="300">
+* Custom gripper (hardware folder) <br>
+  > *Print all .stl files inside hardware folder. Files labeled x2 require two copies.<br>
+  <img src="./img/custom_gripper.png" width="300">
 * Arduino UNO
 * SG90 or MG90 *4 (Base, Shoulder, Elbow, Claw)
 * ESP32-CAM AI thinker
